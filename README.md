@@ -1,2 +1,2 @@
-# Ratatouille23-Android
-Repository del codice per Ratatouille23
+# Ratatouille23-Backend
+Repository del codice backend per Ratatouille23
