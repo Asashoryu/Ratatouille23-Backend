@@ -39,6 +39,7 @@
         allergie varchar(255),
         categoria varchar(255),
         description varchar(255),
+        ordinabile bit,
         prezzo float(23),
         primary key (nome)
     ) engine=InnoDB;
