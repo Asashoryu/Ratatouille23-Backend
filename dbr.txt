@@ -37,11 +37,11 @@ CREATE TABLE conto(
 	
 );
 CREATE TABLE ordered_dish(
-	corrispondenza SERIAL PRIMARY KEY
+	corrispondenza SERIAL PRIMARY KEY,
 	quantita INTEGER NOT NULL,
 	conto_id INTEGER,
 	nome_piatto VARCHAR(255),
-	FOREIGN KEY(nome_piatto) REFERENCES piatto(name) on delete cascade ,
+	FOREIGN KEY(nome_piatto) REFERENCES piatto(nome) on delete cascade ,
 	FOREIGN KEY(conto_id) REFERENCES conto(id) on delete cascade 
 	
 );
