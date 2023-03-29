@@ -84,7 +84,7 @@ BEGIN
     IF NEW.quantita < 0 THEN
         SET NEW.quantita = 0;
     END IF;
-END$$
+END//
 DELIMITER ;
 
 
