@@ -11,8 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface Ingridient_Repository extends CrudRepository<Ingridient,String> {
-    @Query(value = "select * from ingridient",nativeQuery = true)
+    @Query(value = "select * from ingrediente",nativeQuery = true)
     public Optional<List<Ingridient>> get_all_ingridients();
-
 
 }

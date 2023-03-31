@@ -23,4 +23,24 @@ public class Impl_Make_Dish_Service implements I_Make_Dish_Service {
     public Optional<List<Make_Dish>> get_dishes_from_ingridient(String ingrediente) {
         return make_dish_repository.get_dishes_from_ingridient(ingrediente);
     }
+
+    @Override
+    public Iterable<Make_Dish> findAll() {
+        return make_dish_repository.findAll();
+    }
+
+    @Override
+    public Optional<Make_Dish> save(Make_Dish makeDish) {
+        return Optional.of(make_dish_repository.save(makeDish));
+    }
+
+    @Override
+    public void delete(Make_Dish makeDish) {
+        make_dish_repository.delete(makeDish);
+    }
+
+    @Override
+    public Make_Dish findByDishAndIngridient(String dish, String ingridient) {
+        return make_dish_repository.findByDishAndIngridient(dish, ingridient);
+    }
 }

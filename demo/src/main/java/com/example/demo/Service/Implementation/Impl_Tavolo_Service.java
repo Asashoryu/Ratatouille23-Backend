@@ -11,9 +11,13 @@ import java.util.Optional;
 
 @Service("Impl_Tavolo_Service")
 public class Impl_Tavolo_Service implements I_Tavolo_Service {
-
     @Autowired
     private Tavolo_Repository tavolo_repository;
+
+    @Override
+    public Optional<Tavolo> findById(int id) {
+        return tavolo_repository.findById(id);
+    }
 
     @Override
     public Optional<List<Tavolo>> get_all_tables() {
@@ -28,5 +32,15 @@ public class Impl_Tavolo_Service implements I_Tavolo_Service {
     @Override
     public Optional<Tavolo> get_specific_table(int id) {
         return tavolo_repository.get_specific_table(id);
+    }
+
+    @Override
+    public Optional<Tavolo> save(Tavolo tavolo) {
+        return Optional.of(tavolo_repository.save(tavolo));
+    }
+
+    @Override
+    public void deleteById(int id) {
+        tavolo_repository.deleteById(id);
     }
 }

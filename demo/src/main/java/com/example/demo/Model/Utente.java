@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="dipendente")
 public class Utente {
     @Id
     @Column(name="username")
@@ -20,23 +20,23 @@ public class Utente {
 
     @Column(name="password")
     private String password;
-    @Column(name="role")
-    private String role;
-    @Column(name="is_reimpostata")
-    private boolean is_reimpostata;
+    @Column(name="ruolo")
+    private String ruolo;
+    @Column(name="isReimpostata")
+    private Boolean isReimpostata;
     // alt + ins Constructor + select none
 
     public Utente() {
     }
     // alt + ins Constructor + todos
 
-    public Utente(String username, String nome, String cognome, String password, String role, boolean is_reimpostata) {
+    public Utente(String username, String nome, String cognome, String password, String ruolo, boolean isReimpostata) {
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
-        this.role = role;
-        this.is_reimpostata = is_reimpostata;
+        this.ruolo = ruolo;
+        this.isReimpostata = isReimpostata;
     }
 
 
@@ -75,19 +75,19 @@ public class Utente {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getRuolo() {
+        return ruolo;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 
-    public boolean isIs_reimpostata() {
-        return is_reimpostata;
+    public Boolean isIsReimpostata() {
+        return isReimpostata;
     }
 
-    public void setIs_reimpostata(boolean is_reimpostata) {
-        this.is_reimpostata = is_reimpostata;
+    public void setIsReimpostata(Boolean isReimpostata) {
+        this.isReimpostata = isReimpostata;
     }
 }

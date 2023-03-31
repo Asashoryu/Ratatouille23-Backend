@@ -5,19 +5,19 @@ public class Utente_DTO {
     private String nome;
     private String cognome;
     private String password;
-    private String role;
-    private boolean is_reimpostata;
+    private String ruolo;
+    private Boolean IsReimpostata;
 
     public Utente_DTO() {
     }
 
-    public Utente_DTO(String username, String nome, String cognome, String password, String role, boolean is_reimpostata) {
+    public Utente_DTO(String username, String nome, String cognome, String password, String ruolo, boolean IsReimpostata) {
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
-        this.role = role;
-        this.is_reimpostata = is_reimpostata;
+        this.ruolo = ruolo;
+        this.IsReimpostata = IsReimpostata;
     }
 
     public String getUsername() {
@@ -52,19 +52,19 @@ public class Utente_DTO {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getRuolo() {
+        return ruolo;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 
-    public boolean isIs_reimpostata() {
-        return is_reimpostata;
+    public Boolean getIsReimpostata() {
+        return IsReimpostata;
     }
 
-    public void setIs_reimpostata(boolean is_reimpostata) {
-        this.is_reimpostata = is_reimpostata;
+    public void setIsReimpostata(Boolean IsReimpostata) {
+        this.IsReimpostata = IsReimpostata;
     }
 }

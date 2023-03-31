@@ -6,17 +6,24 @@ import com.example.demo.Model.Dish;
 public class Ordered_Dish_DTO {
     private int id;
     private int quantity;
-    private Conto conto;
-    private Dish dish;
+    private int contoId;
+    private String dishName;
 
     public Ordered_Dish_DTO() {
+
     }
 
-    public Ordered_Dish_DTO(int id, int quantity, Conto conto, Dish dish) {
+    public Ordered_Dish_DTO(int quantity, int contoId, String dishName) {
+        this.quantity = quantity;
+        this.contoId = contoId;
+        this.dishName = dishName;
+    }
+
+    public Ordered_Dish_DTO(int id, int quantity, int contoId, String dishName) {
         this.id = id;
         this.quantity = quantity;
-        this.conto = conto;
-        this.dish = dish;
+        this.contoId = contoId;
+        this.dishName = dishName;
     }
 
     public int getId() {
@@ -35,19 +42,20 @@ public class Ordered_Dish_DTO {
         this.quantity = quantity;
     }
 
-    public Conto getConto() {
-        return conto;
+    public int getContoId() {
+        return contoId;
     }
 
-    public void setConto(Conto conto) {
-        this.conto = conto;
+    public void setContoId(int contoId) {
+        this.contoId = contoId;
     }
 
-    public Dish getDish() {
-        return dish;
+    public String getDishName() {
+        return dishName;
     }
 
-    public void setDish(Dish dish) {
-        this.dish = dish;
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 }
+

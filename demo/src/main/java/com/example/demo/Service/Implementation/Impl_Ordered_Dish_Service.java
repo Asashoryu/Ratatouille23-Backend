@@ -14,6 +14,16 @@ public class Impl_Ordered_Dish_Service implements I_Ordered_Dish_Service {
     private Ordered_Dish_Repository ordered_dish_repository;
 
     @Override
+    public Optional<Ordered_Dish> findById(int id) {
+        return ordered_dish_repository.findById(id);
+    }
+
+    @Override
+    public Optional<List<Ordered_Dish>> getAllOrderedDishes() {
+        return ordered_dish_repository.getAllOrderedDishes();
+    }
+
+    @Override
     public Optional<List<Ordered_Dish>> get_dishes_by_check(int conto) {
         return ordered_dish_repository.get_dishes_by_check(conto);
     }
@@ -21,5 +31,15 @@ public class Impl_Ordered_Dish_Service implements I_Ordered_Dish_Service {
     @Override
     public Optional<List<Ordered_Dish>> get_checks_by_dish(String piatto) {
         return ordered_dish_repository.get_checks_by_dish(piatto);
+    }
+
+    @Override
+    public void saveAll(List<Ordered_Dish> dishesToSave) {
+        ordered_dish_repository.saveAll(dishesToSave);
+    }
+
+    @Override
+    public void save(Ordered_Dish orderedDish) {
+        ordered_dish_repository.save(orderedDish);
     }
 }

@@ -1,23 +1,21 @@
 package com.example.demo.DTO;
 
-import com.example.demo.Model.Dish;
 import com.example.demo.Model.Ingridient;
 
 public class Make_Dish_DTO {
     private int id;
     private float quantity;
-    private Dish dish;
-    private Ingridient ingridient;
-
+    private String dishName;
+    private String ingridientName;
 
     public Make_Dish_DTO() {
     }
 
-    public Make_Dish_DTO(int id, float quantity,  Dish dish, Ingridient ingridient) {
+    public Make_Dish_DTO(int id, float quantity, String dishName, String ingridientName) {
         this.id = id;
         this.quantity = quantity;
-        this.ingridient = ingridient;
-        this.dish = dish;
+        this.ingridientName = ingridientName;
+        this.dishName = dishName;
     }
 
     public int getId() {
@@ -36,19 +34,19 @@ public class Make_Dish_DTO {
         this.quantity = quantity;
     }
 
-    public Ingridient getIngridient() {
-        return ingridient;
+    public String getIngridientName() {
+        return ingridientName;
     }
 
-    public void setIngridient(Ingridient ingridient) {
-        this.ingridient = ingridient;
+    public void setIngridientName(String ingridientName) {
+        this.ingridientName = ingridientName;
     }
 
-    public Dish getDish() {
-        return dish;
+    public String getDishName() {
+        return dishName;
     }
 
-    public void setDish(Dish dish) {
-        this.dish = dish;
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 }

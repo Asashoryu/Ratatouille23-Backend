@@ -19,9 +19,9 @@ public class Dish {
     @Column(name="allergie")
     private String allergy;
     @Column(name="ordinabile")
-    private boolean ordiniabile;
+    private Boolean ordinabile;
     @Column(name="description")
-    private String descritpion;
+    private String description;
 
     // uno a molti si crea la lista del molti
     @OneToMany(mappedBy = "dish" ,fetch = FetchType.LAZY)
@@ -35,15 +35,13 @@ public class Dish {
     public Dish() {
     }
 
-    public Dish(String name, float price, String category, String allergy, boolean ordiniabile, String descritpion, List<Ordered_Dish> ordered_dishes, List<Make_Dish> made_dishes) {
+    public Dish(String name, float price, String category, String allergy, Boolean ordinabile, String description) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.allergy = allergy;
-        this.ordiniabile = ordiniabile;
-        this.descritpion = descritpion;
-        this.ordered_dishes = ordered_dishes;
-        this.made_dishes = made_dishes;
+        this.ordinabile = ordinabile;
+        this.description = description;
     }
 
     public String getName() {
@@ -62,12 +60,12 @@ public class Dish {
         this.price = price;
     }
 
-    public boolean isOrdiniabile() {
-        return ordiniabile;
+    public Boolean isOrdinabile() {
+        return ordinabile;
     }
 
-    public void setOrdiniabile(boolean ordiniabile) {
-        this.ordiniabile = ordiniabile;
+    public void setOrdinabile(Boolean ordinabile) {
+        this.ordinabile = ordinabile;
     }
 
     public String getCategory() {
@@ -102,11 +100,11 @@ public class Dish {
         this.made_dishes = made_dishes;
     }
 
-    public String getDescritpion() {
-        return descritpion;
+    public String setDescription() {
+        return description;
     }
 
-    public void setDescritpion(String descritpion) {
-        this.descritpion = descritpion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

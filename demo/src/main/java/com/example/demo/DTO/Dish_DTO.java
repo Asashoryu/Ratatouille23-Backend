@@ -2,17 +2,17 @@ package com.example.demo.DTO;
 
 public class Dish_DTO {
     private String name;
-    private float price;
+    private Float price;
     private String category;
     private String allergy;
 
-    private  boolean ordinabile;
+    private  Boolean ordinabile;
     private String description;
 
     public Dish_DTO() {
     }
 
-    public Dish_DTO(String name, float price, String category, String allergy, boolean ordinabile, String description) {
+    public Dish_DTO(String name, Float price, String category, String allergy, Boolean ordinabile, String description) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -29,11 +29,11 @@ public class Dish_DTO {
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -53,11 +53,11 @@ public class Dish_DTO {
         this.allergy = allergy;
     }
 
-    public boolean isOrdinabile() {
+    public Boolean isOrdinabile() {
         return ordinabile;
     }
 
-    public void setOrdinabile(boolean ordinabile) {
+    public void setOrdinabile(Boolean ordinabile) {
         this.ordinabile = ordinabile;
     }
 

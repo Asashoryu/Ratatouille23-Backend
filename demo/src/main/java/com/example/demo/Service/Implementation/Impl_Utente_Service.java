@@ -11,9 +11,19 @@ import java.util.Optional;
 @Service("Impl_Utente_Service")
 public class Impl_Utente_Service implements I_Utente_Service {
     @Autowired // crea l'oggetto
-    private Utente_Repository utente_repository;
+    private Utente_Repository dipendente_repository;
     @Override
-    public Optional<Utente> log_in(String username, String password){
-        return utente_repository.log_in(username,password);
+    public Optional<Utente> login(String username, String password){
+        return dipendente_repository.login(username,password);
+    }
+
+    @Override
+    public void crea(String username, String password, String nome, String cognome, String ruolo, Boolean isReimpostata) {
+        dipendente_repository.crea(username, password, nome, cognome, ruolo, isReimpostata);
+    }
+
+    @Override
+    public void cambiaPassword(String username, String nuovaPassword) {
+        dipendente_repository.cambiaPassword(username, nuovaPassword);
     }
 }

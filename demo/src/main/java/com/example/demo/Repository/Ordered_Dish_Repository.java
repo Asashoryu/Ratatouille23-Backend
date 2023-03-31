@@ -1,5 +1,6 @@
 package com.example.demo.Repository;
 
+import com.example.demo.Model.Dish;
 import com.example.demo.Model.Ordered_Dish;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -12,6 +13,9 @@ import java.util.Optional;
 @Repository
 
 public interface Ordered_Dish_Repository extends CrudRepository<Ordered_Dish,Integer> {
+
+    @Query(value = "SELECT * FROM ordered_dish", nativeQuery = true)
+    Optional<List<Ordered_Dish>> getAllOrderedDishes();
     @Query(value = "select * from ordered_dish as o where o.conto_id=:conto",nativeQuery = true)
     public Optional<List<Ordered_Dish>> get_dishes_by_check(@PathVariable("conto") int conto);
 

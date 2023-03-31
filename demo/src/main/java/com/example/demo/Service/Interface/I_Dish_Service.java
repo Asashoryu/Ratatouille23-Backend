@@ -8,12 +8,17 @@ import java.util.Optional;
 
 public interface I_Dish_Service {
 
-    public Optional<List<Dish>> get_all_dishes();
-    public Optional<List<Dish>> get_category_dishes(String category);
+    Optional<Dish> findById(String nome);
 
-    //todo
-    public void update(Dish dish);
-    public void insert(Dish dish);
+    Optional<List<Dish>> getAllDishes();
 
+    Optional<List<Dish>> getCategoryDishes(String category);
 
+    Optional<List<Dish>> getAvailableDishes();
+
+    void insert(Dish dish);
+
+    void insert(String nome, String descrizione, String categoria, float prezzo, boolean ordinabile, String allergie);
 }
+
+

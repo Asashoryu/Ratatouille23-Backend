@@ -1,23 +1,24 @@
 package com.example.demo.DTO;
 
 import com.example.demo.Model.Tavolo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Conto_DTO {
     private int id;
     private int time;
     private float total;
     private boolean is_chiuso;
-    private Tavolo tavolo;
+    private int tavoloId;
 
     public Conto_DTO() {
     }
 
-    public Conto_DTO(int id, int time, float total, boolean is_chiuso, Tavolo tavolo) {
+    public Conto_DTO(int id, int time, float total, boolean is_chiuso, int tavoloId) {
         this.id = id;
         this.time = time;
         this.total = total;
         this.is_chiuso = is_chiuso;
-        this.tavolo = tavolo;
+        this.tavoloId = tavoloId;
     }
 
     public int getId() {
@@ -52,11 +53,12 @@ public class Conto_DTO {
         this.is_chiuso = is_chiuso;
     }
 
-    public Tavolo getTavolo() {
-        return tavolo;
+    public int getTavoloId() {
+        return tavoloId;
     }
 
-    public void setTavolo(Tavolo tavolo) {
-        this.tavolo = tavolo;
+    public void setTavoloId(int tavoloId) {
+        this.tavoloId = tavoloId;
     }
 }
+

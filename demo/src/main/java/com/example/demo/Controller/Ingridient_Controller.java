@@ -46,4 +46,21 @@ public class Ingridient_Controller {
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Ingredienti non presenti");
     }
+
+    @PostMapping("/save_ingridient:{name}:{price}:{quantity}:{misura}:{tolleranza}:{description}")
+    public void save_ingridient(@PathVariable String name,
+                                @PathVariable float price,
+                                @PathVariable float quantity,
+                                @PathVariable String misura,
+                                @PathVariable float tolleranza,
+                                @PathVariable String description){
+        Ingridient ingridient = new Ingridient(name, price, quantity, misura, tolleranza, description);
+        i_ingridient_service.save(ingridient);
+    }
+
+
+    @DeleteMapping("/delete_ingridient/{id}")
+    public void delete_ingridient(@PathVariable String id){
+        i_ingridient_service.deleteById(id);
+    }
 }

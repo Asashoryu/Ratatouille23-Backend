@@ -10,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Make_Dish {
     @Id
     @Column(name="corrispondenza")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name="quantity")
@@ -31,6 +32,13 @@ public class Make_Dish {
     }
 
     public Make_Dish(int id, float quantity,Dish dish,Ingridient ingridient) {
+        this.id = id;
+        this.quantity = quantity;
+        this.ingridient = ingridient;
+        this.dish = dish;
+    }
+
+    public Make_Dish(float quantity,Dish dish,Ingridient ingridient) {
         this.id = id;
         this.quantity = quantity;
         this.ingridient = ingridient;

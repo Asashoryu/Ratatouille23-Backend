@@ -43,21 +43,18 @@ public class Dish_Controller {
 
     @GetMapping("/getdishes")
     public List<Dish_DTO> get_all_dishes(){
-        Optional<List<Dish>> dishes = i_dish_service.get_all_dishes();
+        Optional<List<Dish>> dishes = i_dish_service.getAllDishes();
         if(dishes.isPresent()){
             List<Dish_DTO> dish_dtos = new ArrayList<>();
             for (Dish dish:dishes.get()) dish_dtos.add(convertDto(dish));
             return dish_dtos;
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Piatti non presenti");
-
-
-
-
     }
+
     @GetMapping("/get:{category}")
     public List<Dish_DTO> get_category_dishes(@PathVariable String category){
-        Optional<List<Dish>> dishes=i_dish_service.get_category_dishes(category);
+        Optional<List<Dish>> dishes=i_dish_service.getCategoryDishes(category);
         if(dishes.isPresent()){
             List<Dish_DTO> dish_dtos=new ArrayList<>();
             for (Dish dish:dishes.get()) dish_dtos.add(convertDto(dish));
@@ -66,15 +63,15 @@ public class Dish_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Piatti non presenti per la categoria selezionata");
 
     }
-    @PostMapping("/insert_piatto") // per insert
-    public void insert_piatto(@RequestBody Dish_DTO dish_dto){
-        Dish dish=convertEntity(dish_dto);
+    @PostMapping("/insert_piatto:{nome}:{categoria}:{prezzo}:{ordinabile}:{allergie}:{descrizione}")
+    public void insert_piatto(@PathVariable String nome,
+                              @PathVariable String categoria,
+                              @PathVariable float prezzo,
+                              @PathVariable Boolean ordinabile,
+                              @PathVariable String allergie,
+                              @PathVariable String descrizione) {
+        Dish dish = new Dish(nome, prezzo, categoria, allergie, ordinabile, descrizione);
         i_dish_service.insert(dish);
     }
 
-    @PutMapping("/update_piatto")  //per update
-    public void update_piatto(@RequestBody Dish_DTO dish_dto){
-        Dish dish=convertEntity(dish_dto);
-        i_dish_service.update(dish); //il client passa informazioni (json) ma potrebbe avere porbelmi er convertire i dati , poi si fa DTO
-    }
 }

@@ -10,6 +10,11 @@ public interface I_Make_Dish_Service {
 
     public Optional<List<Make_Dish>> get_dishes_from_ingridient(String ingrediente);
 
+    public Iterable<Make_Dish> findAll();
 
+    Optional<Make_Dish> save(Make_Dish makeDish);
 
+    void delete(Make_Dish makeDish);
+
+    Make_Dish findByDishAndIngridient(String dish, String ingridient);
 }

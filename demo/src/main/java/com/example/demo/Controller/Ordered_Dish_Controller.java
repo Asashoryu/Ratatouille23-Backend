@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 
 import com.example.demo.DTO.Ordered_Dish_DTO;
+import com.example.demo.Model.Dish;
 import com.example.demo.Model.Ordered_Dish;
 import com.example.demo.Service.Interface.I_Ordered_Dish_Service;
 import org.modelmapper.ModelMapper;
@@ -33,14 +34,31 @@ public class Ordered_Dish_Controller {
         return ordered_dish;
     }
 
-    private Ordered_Dish_DTO convertDto(Ordered_Dish ordered_dish){
+    private Ordered_Dish_DTO convertDto(Ordered_Dish ordered_dish) {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-        Ordered_Dish_DTO ordered_dish_dto = new Ordered_Dish_DTO();
-        ordered_dish_dto=modelMapper.map(ordered_dish,Ordered_Dish_DTO.class);
+        Ordered_Dish_DTO ordered_dish_dto = modelMapper.map(ordered_dish, Ordered_Dish_DTO.class);
         return ordered_dish_dto;
     }
 
-    @GetMapping("/get_dishes_by:{check}")
+
+    @GetMapping("/get_ordered_dishes")
+    public List<Ordered_Dish_DTO> getAllOrderedDishes() {
+        Optional<List<Ordered_Dish>> orderedDishes = i_ordered_dish_service.getAllOrderedDishes();
+        List<Ordered_Dish_DTO> orderedDishDTOs = new ArrayList<>();
+        for (Ordered_Dish orderedDish : orderedDishes.get()) {
+            orderedDishDTOs.add(new Ordered_Dish_DTO(
+                    orderedDish.getId(),
+                    orderedDish.getQuantity(),
+                    orderedDish.getConto().getId(),
+                    orderedDish.getDish().getName()
+            ));
+        }
+
+        return orderedDishDTOs;
+    }
+
+
+        @GetMapping("/get_dishes_by:{check}")
     public List<Ordered_Dish_DTO> get_by_check(@PathVariable int check){
         Optional<List<Ordered_Dish>> ordered_dishes = i_ordered_dish_service.get_dishes_by_check(check);
         if(ordered_dishes.isPresent()){

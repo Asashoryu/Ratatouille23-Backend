@@ -19,4 +19,19 @@ public class Impl_Ingridient_Service implements I_Ingridient_Service {
         return ingridient_repository.get_all_ingridients();
     }
 
+    @Override
+    public void deleteById(String id) {
+        ingridient_repository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Ingridient> findById(String id) {
+        return ingridient_repository.findById(id);
+    }
+
+    @Override
+    public Optional<Ingridient> save(Ingridient ingridient) {
+        return Optional.of(ingridient_repository.save(ingridient));
+    }
+
 }

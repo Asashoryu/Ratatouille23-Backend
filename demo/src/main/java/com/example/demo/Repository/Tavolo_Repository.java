@@ -21,7 +21,5 @@ public interface Tavolo_Repository extends CrudRepository<Tavolo,Integer> {
     public Optional<Tavolo> get_specific_table(@PathVariable("id") int id);
 
 
-
-
-
+    Optional<Tavolo> findById(int id);
 }

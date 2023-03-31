@@ -15,7 +15,7 @@ public class Tavolo {
     @Column(name="taken")
     private boolean taken;
 
-    @OneToMany(mappedBy = "tavolo" ,fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Conto> conti= new ArrayList<>();
 

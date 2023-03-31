@@ -8,10 +8,7 @@ import com.example.demo.Service.Interface.I_Tavolo_Service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -70,5 +67,20 @@ public class Tavolo_Controller {
          }
          else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Tavolo non presente");
      }
+
+    @PostMapping("/add_table:{id}")
+    public Tavolo_DTO add_table(@PathVariable int id) {
+        Optional<Tavolo> tavolo = Optional.of(new Tavolo());
+        tavolo.get().setId(id);
+        tavolo.get().setTaken(false);
+        tavolo = i_tavolo_service.save(tavolo.get());
+        Tavolo_DTO tavolo_dto = convertDto(tavolo.get());
+        return tavolo_dto;
+    }
+
+    @DeleteMapping("/delete_table:{id}")
+    public void delete_table(@PathVariable int id) {
+        i_tavolo_service.deleteById(id);
+    }
 
 }

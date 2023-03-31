@@ -1,6 +1,7 @@
 package com.example.demo.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -25,17 +26,35 @@ public class Conto {
     @Column(name="is_chiuso")
     private boolean is_chiuso;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "numero_tavolo", referencedColumnName = "id")
     @JsonManagedReference
     private Tavolo tavolo;
 
-    @OneToMany(mappedBy = "conto" ,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "conto" ,fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Ordered_Dish> ordered_dishes= new ArrayList<>();
 
     public Conto() {
+    }
+
+    public Conto(int time, float total, boolean is_chiuso, Tavolo tavolo) {
+        this.id = id;
+        this.time = time;
+        this.total = total;
+        this.is_chiuso = is_chiuso;
+        this.tavolo = tavolo;
+        this.ordered_dishes=ordered_dishes;
+    }
+
+    public Conto(int id, int time, float total, boolean is_chiuso, Tavolo tavolo) {
+        this.id = id;
+        this.time = time;
+        this.total = total;
+        this.is_chiuso = is_chiuso;
+        this.tavolo = tavolo;
+        this.ordered_dishes=ordered_dishes;
     }
 
     public Conto(int id, int time, float total, boolean is_chiuso, Tavolo tavolo,List<Ordered_Dish> ordered_dishes) {

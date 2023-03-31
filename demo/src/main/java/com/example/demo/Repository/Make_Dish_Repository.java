@@ -1,5 +1,7 @@
 package com.example.demo.Repository;
 
+import com.example.demo.Model.Dish;
+import com.example.demo.Model.Ingridient;
 import com.example.demo.Model.Make_Dish;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -16,4 +18,7 @@ public interface Make_Dish_Repository extends CrudRepository<Make_Dish,Integer>{
 
     @Query(value ="select * from make_dish as m where m.nome_ingrediente=:ingrediente",nativeQuery = true)
     public Optional<List<Make_Dish>> get_dishes_from_ingridient(@PathVariable("ingrediente") String ingrediente);
+
+    @Query(value ="select * from make_dish as m where m.nome_piatto=:dishName and m.nome_ingrediente=:ingridientName", nativeQuery = true)
+    Make_Dish findByDishAndIngridient(@PathVariable("dishName") String dishName, @PathVariable("ingridientName") String ingridientName);
 }

@@ -4,6 +4,7 @@ import com.example.demo.Model.Conto;
 import com.example.demo.Repository.Conto_Repository;
 import com.example.demo.Service.Interface.I_Conto_Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,21 @@ import java.util.Optional;
 public class Impl_Conto_Service implements I_Conto_Service {
     @Autowired
     private Conto_Repository conto_repository;
+
+    @Override
+    public Optional<Conto> findById(int id) {
+        return conto_repository.findById(id);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        conto_repository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Conto> save(Conto conto) {
+        return Optional.of(conto_repository.save(conto));
+    }
 
     @Override
     public Optional<List<Conto>> get_all() {
