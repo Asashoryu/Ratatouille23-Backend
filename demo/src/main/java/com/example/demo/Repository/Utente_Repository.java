@@ -13,18 +13,23 @@ import java.util.Optional;
 @Repository
 public interface Utente_Repository extends CrudRepository<Utente,String> {
 
-    @Query(value = "select * from dipendente where dipendente.username= :username and dipendente.password = :password", nativeQuery = true)
+    @Query(value = "select * from utente where utente.username= :username and utente.password = :password", nativeQuery = true)
     public Optional<Utente> login(@Param("username") String username, @Param("password") String password);
 
     @Modifying
     @Transactional
-    @Query(value = "insert into dipendente (username, password, nome, cognome, ruolo, is_reimpostata) values (:username, :password, :nome, :cognome, :ruolo, :isReimpostata)", nativeQuery = true)
+    @Query(value = "insert into utente (username, password, nome, cognome, ruolo, is_reimpostata) values (:username, :password, :nome, :cognome, :ruolo, :isReimpostata)", nativeQuery = true)
     public void crea(@Param("username") String username, @Param("password") String password, @Param("nome") String nome, @Param("cognome") String cognome, @Param("ruolo") String ruolo, @Param("isReimpostata") boolean isReimpostata);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE dipendente SET password = :nuova_password, is_reimpostata = true WHERE username = :username", nativeQuery = true)
+    @Query(value = "UPDATE utente SET password = :nuova_password, is_reimpostata = true WHERE username = :username", nativeQuery = true)
     public void cambiaPassword(@Param("username") String username, @Param("nuova_password") String nuova_password);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE utente SET token = :token WHERE username = :username", nativeQuery = true)
+    public void setToken(@Param("username") String username, @Param("token") String token);
 
 }
 

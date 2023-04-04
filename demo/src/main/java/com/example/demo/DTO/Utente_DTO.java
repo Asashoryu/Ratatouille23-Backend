@@ -6,7 +6,9 @@ public class Utente_DTO {
     private String cognome;
     private String password;
     private String ruolo;
+
     private Boolean IsReimpostata;
+    private String token;
 
     public Utente_DTO() {
     }
@@ -66,5 +68,13 @@ public class Utente_DTO {
 
     public void setIsReimpostata(Boolean IsReimpostata) {
         this.IsReimpostata = IsReimpostata;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

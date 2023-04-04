@@ -11,4 +11,6 @@ public interface I_Utente_Service {
 
     void cambiaPassword(String username, String nuovaPassword);
 
+    void setToken(String username, String token);
+
 }

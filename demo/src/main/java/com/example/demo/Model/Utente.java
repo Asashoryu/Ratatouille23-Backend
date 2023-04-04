@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="dipendente")
+@Table(name="utente")
 public class Utente {
     @Id
     @Column(name="username")
@@ -25,18 +25,22 @@ public class Utente {
     @Column(name="isReimpostata")
     private Boolean isReimpostata;
     // alt + ins Constructor + select none
+    @Column(name="token")
+    private String token;
+
 
     public Utente() {
     }
     // alt + ins Constructor + todos
 
-    public Utente(String username, String nome, String cognome, String password, String ruolo, boolean isReimpostata) {
+    public Utente(String username, String nome, String cognome, String password, String ruolo, boolean isReimpostata, String token) {
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
         this.ruolo = ruolo;
         this.isReimpostata = isReimpostata;
+        this.token = token;
     }
 
 
@@ -89,5 +93,21 @@ public class Utente {
 
     public void setIsReimpostata(Boolean isReimpostata) {
         this.isReimpostata = isReimpostata;
+    }
+
+    public Boolean getReimpostata() {
+        return isReimpostata;
+    }
+
+    public void setReimpostata(Boolean reimpostata) {
+        isReimpostata = reimpostata;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

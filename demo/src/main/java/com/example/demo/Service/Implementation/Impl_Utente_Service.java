@@ -26,4 +26,9 @@ public class Impl_Utente_Service implements I_Utente_Service {
     public void cambiaPassword(String username, String nuovaPassword) {
         dipendente_repository.cambiaPassword(username, nuovaPassword);
     }
+
+    @Override
+    public void setToken(String username, String token) {
+        dipendente_repository.setToken(username, token);
+    }
 }
