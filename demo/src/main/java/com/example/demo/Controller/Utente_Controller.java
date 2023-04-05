@@ -46,7 +46,7 @@ public class Utente_Controller {
 
         return dipendente_dto;
     }
-    @GetMapping("/login:{username}:{password}")
+    @GetMapping("/login/{username}/{password}")
     public Utente_DTO log_in(@PathVariable String username, @PathVariable String password){
         Optional<Utente> utente= i_dipendente_service.login(username,password);
         if(utente.isPresent()) {
@@ -56,7 +56,7 @@ public class Utente_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: user name o password errata");
     }
 
-    @PostMapping("/crea:{username}:{password}:{nome}:{cognome}:{ruolo}:{isReimpostata}")
+    @PostMapping("/crea/{username}/{password}/{nome}/{cognome}/{ruolo}/{isReimpostata}")
     public void crea(@PathVariable String username, @PathVariable String password,
                      @PathVariable String nome, @PathVariable String cognome,
                      @PathVariable String ruolo, @PathVariable String isReimpostata) {
@@ -68,7 +68,7 @@ public class Utente_Controller {
         }
     }
 
-    @PutMapping("/cambiaPassword:{username}:{nuovaPassword}")
+    @PutMapping("/cambiaPassword/{username}/{nuovaPassword}")
     public ResponseEntity<String> cambiaPassword(@PathVariable String username, @PathVariable String nuovaPassword) {
         try {
             i_dipendente_service.cambiaPassword(username, nuovaPassword);

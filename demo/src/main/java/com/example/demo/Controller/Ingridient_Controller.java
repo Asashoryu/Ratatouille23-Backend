@@ -8,9 +8,11 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +49,7 @@ public class Ingridient_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Ingredienti non presenti");
     }
 
-    @PostMapping("/save_ingridient:{name}:{price}:{quantity}:{misura}:{tolleranza}:{description}")
+    @PostMapping("/save_ingridient/{name}/{price}/{quantity}/{misura}/{tolleranza}/{description}")
     public void save_ingridient(@PathVariable String name,
                                 @PathVariable float price,
                                 @PathVariable float quantity,
@@ -57,6 +59,21 @@ public class Ingridient_Controller {
         Ingridient ingridient = new Ingridient(name, price, quantity, misura, tolleranza, description);
         i_ingridient_service.save(ingridient);
     }
+
+    @PutMapping("/updateQuantity/{name}/{quantity}")
+    public ResponseEntity<Ingridient> updateIngredientQuantityByName(@PathVariable String name,
+                                                                     @PathVariable float quantity) {
+        Optional<Ingridient> optionalIngredient = i_ingridient_service.findById(name);
+        if (optionalIngredient.isPresent()) {
+            Ingridient ingredient = optionalIngredient.get();
+            ingredient.setQuantity(quantity);
+            i_ingridient_service.save(ingredient);
+            return ResponseEntity.ok(ingredient);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
     @DeleteMapping("/delete_ingridient/{id}")

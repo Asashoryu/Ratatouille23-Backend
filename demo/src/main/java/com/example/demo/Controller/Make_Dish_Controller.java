@@ -53,7 +53,7 @@ public class Make_Dish_Controller {
         return make_dish;
     }
 
-    @GetMapping("/get_ingridients_from:{dish}")
+    @GetMapping("/get_ingridients_from/{dish}")
     public List<Make_Dish_DTO> get_ingridients_for_dish(@PathVariable String dish){
         Optional<List<Make_Dish>> make_dishes = i_make_dish_service.get_ingridients_from_dish(dish);
         if(make_dishes.isPresent()){
@@ -63,7 +63,7 @@ public class Make_Dish_Controller {
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Non ci sono ingredienti per il piatto selezioanto");
     }
-    @GetMapping("/get_dishes_for_:{ingridient}")
+    @GetMapping("/get_dishes_for_/{ingridient}")
     public List<Make_Dish_DTO> get_dishes_for_ingridient(@PathVariable String ingridient){
         Optional<List<Make_Dish>> make_dishes = i_make_dish_service.get_dishes_from_ingridient(ingridient);
         if(make_dishes.isPresent()){
@@ -94,7 +94,7 @@ public class Make_Dish_Controller {
         }
     }
 
-    @PostMapping("/associa:{quantity}:{ingridientName}:{dishName}")
+    @PostMapping("/associa/{quantity}/{ingridientName}/{dishName}")
     public ResponseEntity<?> addMakeDish(@PathVariable float quantity,
                                          @PathVariable String ingridientName,
                                          @PathVariable String dishName) {
@@ -114,7 +114,7 @@ public class Make_Dish_Controller {
     }
 
 
-    @DeleteMapping("/delete:{ingridientName}:{dishName}")
+    @DeleteMapping("/delete/{ingridientName}/{dishName}")
     public ResponseEntity<?> deleteMakeDish(@PathVariable String ingridientName,
                                             @PathVariable String dishName) {
         // Find the existing entity using its related entities

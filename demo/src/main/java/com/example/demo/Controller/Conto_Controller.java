@@ -94,7 +94,7 @@ public class Conto_Controller {
         }
     }
 
-    @GetMapping("/get_all_checks_for_table:{tavolo}")
+    @GetMapping("/get_all_checks_for_table/{tavolo}")
     public List<Conto_DTO> get_all_for_table(@PathVariable int tavolo){
         Optional<List<Conto>> contos = i_conto_service.get_all_check_for_table(tavolo);
         if(contos.isPresent()){
@@ -106,7 +106,7 @@ public class Conto_Controller {
     }
 
 
-    @GetMapping("/get_all_checks_form:{min}_to:{max}")
+    @GetMapping("/get_all_checks_form/{min}_to/{max}")
     public List<Conto_DTO> get_checks_in_interval(@PathVariable int min,@PathVariable int max){
         Optional<List<Conto>> contos = i_conto_service.get_all_check_in_interval(min,max);
         if(contos.isPresent()){
@@ -116,7 +116,7 @@ public class Conto_Controller {
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Conti non presenti per intervallo selezionato");
     }
-    @GetMapping("/get_all_from:{min}_to:{max}_for:{tavolo}")
+    @GetMapping("/get_all_from/{min}_to/{max}_for/{tavolo}")
     public List<Conto_DTO> get_checks_in_interval_for_table(@PathVariable int min,@PathVariable int max, @PathVariable int tavolo){
         Optional<List<Conto>> contos = i_conto_service.get_all_check_for_table_in_interval(min, max, tavolo);
         if(contos.isPresent()){
@@ -127,7 +127,7 @@ public class Conto_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Conti non presenti per tavolo selezionato nel intervallo selzionato");
     }
 
-    @DeleteMapping("/delete_conto:{id}")
+    @DeleteMapping("/delete_conto/{id}")
     @Transactional
     public ResponseEntity<String> deleteConto(@PathVariable int id) {
         Optional<Conto> contoOptional = i_conto_service.findById(id);
@@ -139,7 +139,7 @@ public class Conto_Controller {
         return ResponseEntity.ok("Conto deleted successfully");
     }
 
-    @PostMapping("/save_conto:{id}:{time}:{total}:{isChiuso}:{tavoloId}")
+    @PostMapping("/save_conto/{id}/{time}/{total}/{isChiuso}/{tavoloId}")
     @Transactional
     public ResponseEntity<String> saveConto(
             @PathVariable int id,
@@ -182,7 +182,7 @@ public class Conto_Controller {
         return ResponseEntity.internalServerError().build();
     }
 
-    @PutMapping("/update:{id}:{isChiuso}")
+    @PutMapping("/update/{id}/{isChiuso}")
     public ResponseEntity<Conto> updateContoIsChiusoById(@PathVariable int id, @PathVariable boolean isChiuso) {
         Optional<Conto> contoOptional = contoRepository.findById(id);
         if (contoOptional.isPresent()) {

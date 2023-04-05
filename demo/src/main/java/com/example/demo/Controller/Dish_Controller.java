@@ -52,7 +52,7 @@ public class Dish_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Piatti non presenti");
     }
 
-    @GetMapping("/get:{category}")
+    @GetMapping("/get/{category}")
     public List<Dish_DTO> get_category_dishes(@PathVariable String category){
         Optional<List<Dish>> dishes=i_dish_service.getCategoryDishes(category);
         if(dishes.isPresent()){
@@ -63,7 +63,7 @@ public class Dish_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Piatti non presenti per la categoria selezionata");
 
     }
-    @PostMapping("/insert_piatto:{nome}:{categoria}:{prezzo}:{ordinabile}:{allergie}:{descrizione}")
+    @PostMapping("/insert_piatto/{nome}/{categoria}/{prezzo}/{ordinabile}/{allergie}/{descrizione}")
     public void insert_piatto(@PathVariable String nome,
                               @PathVariable String categoria,
                               @PathVariable float prezzo,

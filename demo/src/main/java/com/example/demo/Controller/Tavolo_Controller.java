@@ -58,7 +58,7 @@ public class Tavolo_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Tavoli liberi non presenti");
 
      }
-     @GetMapping("/get_table:{id}")
+     @GetMapping("/get_table/{id}")
      public Tavolo_DTO get_specific_table(@PathVariable int id) {
          Optional<Tavolo> tavolo = i_tavolo_service.get_specific_table(id);
          if (tavolo.isPresent()) {
@@ -68,7 +68,7 @@ public class Tavolo_Controller {
          else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Tavolo non presente");
      }
 
-    @PostMapping("/add_table:{id}")
+    @PostMapping("/add_table/{id}")
     public Tavolo_DTO add_table(@PathVariable int id) {
         Optional<Tavolo> tavolo = Optional.of(new Tavolo());
         tavolo.get().setId(id);
@@ -78,7 +78,7 @@ public class Tavolo_Controller {
         return tavolo_dto;
     }
 
-    @DeleteMapping("/delete_table:{id}")
+    @DeleteMapping("/delete_table/{id}")
     public void delete_table(@PathVariable int id) {
         i_tavolo_service.deleteById(id);
     }

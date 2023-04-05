@@ -58,7 +58,7 @@ public class Ordered_Dish_Controller {
     }
 
 
-        @GetMapping("/get_dishes_by:{check}")
+        @GetMapping("/get_dishes_by/{check}")
     public List<Ordered_Dish_DTO> get_by_check(@PathVariable int check){
         Optional<List<Ordered_Dish>> ordered_dishes = i_ordered_dish_service.get_dishes_by_check(check);
         if(ordered_dishes.isPresent()){
@@ -68,7 +68,7 @@ public class Ordered_Dish_Controller {
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Non ci sono piatti per il conto selezioanto");
     }
-    @GetMapping("get_checks_by:{dish}")
+    @GetMapping("get_checks_by/{dish}")
     public List<Ordered_Dish_DTO> get_by_dish(@PathVariable String dish){
         Optional<List<Ordered_Dish>> ordered_dishes = i_ordered_dish_service.get_checks_by_dish(dish);
         if (ordered_dishes.isPresent()){
