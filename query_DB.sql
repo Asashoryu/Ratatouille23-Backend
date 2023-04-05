@@ -1,10 +1,3 @@
--- copiare questi per copiare e usare il database
-drop database rat;
-create database rat;
-use rat;
-
-
--- copiare questi per il popolamento dopo aver avviato la prima volta il backend 
 INSERT INTO tavolo (id, taken) VALUES
     (1, false),
     (2, false),
@@ -41,11 +34,18 @@ INSERT INTO conto (id, time, total, is_chiuso, numero_tavolo) VALUES (1008, 1650
 INSERT INTO conto (id, time, total, is_chiuso, numero_tavolo) VALUES (1009, 1651287662, 29.5, true, 9);
 INSERT INTO conto (id, time, total, is_chiuso, numero_tavolo) VALUES (10011, 1652535585, 66, true, 10);
 
+insert into utente values('as', 'as', true, 'as', 'as', 'ADDETTOSALA', null);
+insert into utente values('a', 'a', true, 'a', 'a', 'AMMINISTRATORE', null);
+insert into utente values('s', 's', true, 's', 's', 'SUPERVISORE', null);
+insert into utente values('ac', 'ac', true, 'ac', 'ac', 'ADDETTOCUCINA', null);
 
-insert into dipendente values('as', 'as', true, 'as', 'as', 'ADDETTOSALA');
-insert into dipendente values('a', 'a', true, 'a', 'a', 'AMMINISTRATORE');
-insert into dipendente values('s', 's', true, 's', 's', 'SUPERVISORE');
-insert into dipendente values('ac', 'ac', true, 'ac', 'ac', 'ADDETTOCUCINA');
-
-
-
+INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
+VALUES ('sale', 0.5, 500, 'grammi', 0.1, 'sale da tavola comune');
+INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
+VALUES ('farina', 1.2, 1000, 'grammi', 0.05, 'farina 00');
+INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
+VALUES ('petto di pollo', 3.5, 200, 'grammi', 0.05, 'petto di pollo senza pelle e senza osso');
+INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
+VALUES ('pomodoro', 1.0, 300, 'grammi', 0.05, 'pomodoro maturo');
+INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
+VALUES ('mozzarella', 2.5, 250, 'grammi', 0.05, 'mozzarella di bufala campana');
