@@ -2,6 +2,7 @@ package com.example.demo.Service.Interface;
 
 import com.example.demo.Model.Utente;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface I_Utente_Service {
@@ -12,5 +13,7 @@ public interface I_Utente_Service {
     void cambiaPassword(String username, String nuovaPassword);
 
     void setToken(String username, String token);
+
+    Optional<List<Utente>> findAllAmministratoriESupervisori();
 
 }

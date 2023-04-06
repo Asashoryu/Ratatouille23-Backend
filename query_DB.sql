@@ -1,3 +1,7 @@
+drop database rat;
+create database rat;
+use rat;
+
 INSERT INTO tavolo (id, taken) VALUES
     (1, false),
     (2, false),
@@ -14,7 +18,7 @@ INSERT INTO tavolo (id, taken) VALUES
     (13, false),
     (14, false),
     (15, false);
-    
+
 INSERT INTO piatto (nome, prezzo, categoria, allergie, ordinabile, description)
 VALUES ('Spaghetti alla Carbonara', 12.50, 'Primo piatto', 'Glutine, uova', true, 'Spaghetti conditi con uovo, guanciale e formaggio pecorino romano'),
 ('Pizza Margherita', 8.00, 'Pizza', 'Glutine, lattosio', true, 'Pizza con pomodoro, mozzarella e basilico'),
@@ -39,13 +43,13 @@ insert into utente values('a', 'a', true, 'a', 'a', 'AMMINISTRATORE', null);
 insert into utente values('s', 's', true, 's', 's', 'SUPERVISORE', null);
 insert into utente values('ac', 'ac', true, 'ac', 'ac', 'ADDETTOCUCINA', null);
 
-INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
-VALUES ('sale', 0.5, 500, 'grammi', 0.1, 'sale da tavola comune');
-INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
-VALUES ('farina', 1.2, 1000, 'grammi', 0.05, 'farina 00');
-INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
-VALUES ('petto di pollo', 3.5, 200, 'grammi', 0.05, 'petto di pollo senza pelle e senza osso');
-INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
-VALUES ('pomodoro', 1.0, 300, 'grammi', 0.05, 'pomodoro maturo');
-INSERT INTO ingrediente (nome, costo, quantita, misura, tolleranza, description) 
-VALUES ('mozzarella', 2.5, 250, 'grammi', 0.05, 'mozzarella di bufala campana');
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Farina', 'Farina bianca', 'Kg', 1.50, 50.0, 10.0, 0.5);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Zucchero', 'Zucchero bianco', 'Kg', 2.00, 30.0, 5.0, 0.2);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Latte', 'Latte fresco', 'Lt', 0.80, 100.0, 20.0, 1.0);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Uova', 'Uova fresche', 'Nr', 0.15, 500.0, 50.0, 5.0);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Burro', 'Burro fresco', 'Kg', 5.00, 10.0, 2.0, 0.1);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Sale', 'Sale fine', 'Kg', 0.30, 20.0, 1.0, 0.05);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Pepe', 'Pepe nero', 'Kg', 1.20, 5.0, 0.5, 0.02);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Aceto', 'Aceto balsamico', 'Lt', 3.00, 15.0, 3.0, 0.3);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Olio', 'Olio extravergine', 'Lt', 5.50, 20.0, 5.0, 0.5);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Aglio', 'Aglio fresco', 'Kg', 4.00, 2.0, 0.2, 0.01);

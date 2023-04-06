@@ -40,7 +40,6 @@ public class Ordered_Dish_Controller {
         return ordered_dish_dto;
     }
 
-
     @GetMapping("/get_ordered_dishes")
     public List<Ordered_Dish_DTO> getAllOrderedDishes() {
         Optional<List<Ordered_Dish>> orderedDishes = i_ordered_dish_service.getAllOrderedDishes();

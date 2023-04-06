@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -30,6 +31,9 @@ public interface Utente_Repository extends CrudRepository<Utente,String> {
     @Transactional
     @Query(value = "UPDATE utente SET token = :token WHERE username = :username", nativeQuery = true)
     public void setToken(@Param("username") String username, @Param("token") String token);
+
+    @Query(value = "SELECT * FROM utente WHERE utente.ruolo IN ('AMMINISTRATORE', 'SUPERVISORE')", nativeQuery = true)
+    Optional<List<Utente>> findAllAmministratoriESupervisori();
 
 }
 

@@ -7,6 +7,7 @@ import com.example.demo.Service.Interface.I_Utente_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service("Impl_Utente_Service")
 public class Impl_Utente_Service implements I_Utente_Service {
@@ -30,5 +31,10 @@ public class Impl_Utente_Service implements I_Utente_Service {
     @Override
     public void setToken(String username, String token) {
         dipendente_repository.setToken(username, token);
+    }
+
+    @Override
+    public Optional<List<Utente>> findAllAmministratoriESupervisori() {
+        return dipendente_repository.findAllAmministratoriESupervisori();
     }
 }
