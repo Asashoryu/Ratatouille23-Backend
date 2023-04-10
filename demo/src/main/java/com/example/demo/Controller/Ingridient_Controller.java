@@ -76,6 +76,29 @@ public class Ingridient_Controller {
         i_ingridient_service.save(ingridient);
     }
 
+    @PutMapping("/update_ingredient/{name}/{price}/{quantity}/{misura}/{soglia}/{tolleranza}/{description}")
+    public void updateIngredient(@PathVariable String name,
+                                 @PathVariable float price,
+                                 @PathVariable float quantity,
+                                 @PathVariable String misura,
+                                 @PathVariable float soglia,
+                                 @PathVariable float tolleranza,
+                                 @PathVariable String description) {
+        Optional<Ingridient> ingredient = i_ingridient_service.findById(name);
+        if (ingredient != null) {
+            ingredient.get().setPrice(price);
+            ingredient.get().setQuantity(quantity);
+            ingredient.get().setMisura(misura);
+            ingredient.get().setSoglia(soglia);
+            ingredient.get().setTolleranza(tolleranza);
+            ingredient.get().setDescription(description);
+            i_ingridient_service.save(ingredient.get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient not found");
+        }
+    }
+
+
     @PutMapping("/updateQuantity/{name}/{quantity}")
     public ResponseEntity<Ingridient> updateIngredientQuantityByName(@PathVariable String name,
                                                                      @PathVariable float quantity) {

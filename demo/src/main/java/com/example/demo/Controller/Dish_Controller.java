@@ -61,8 +61,8 @@ public class Dish_Controller {
             return dish_dtos;
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Piatti non presenti per la categoria selezionata");
-
     }
+
     @PostMapping("/insert_piatto/{nome}/{categoria}/{prezzo}/{ordinabile}/{allergie}/{descrizione}")
     public void insert_piatto(@PathVariable String nome,
                               @PathVariable String categoria,
@@ -73,5 +73,25 @@ public class Dish_Controller {
         Dish dish = new Dish(nome, prezzo, categoria, allergie, ordinabile, descrizione);
         i_dish_service.insert(dish);
     }
+
+    @PutMapping("/update_piatto/{nome}/{categoria}/{prezzo}/{ordinabile}/{allergie}/{descrizione}")
+    public void update_piatto(@PathVariable String nome,
+                              @PathVariable String categoria,
+                              @PathVariable float prezzo,
+                              @PathVariable Boolean ordinabile,
+                              @PathVariable String allergie,
+                              @PathVariable String descrizione){
+        Optional<Dish> dish = i_dish_service.findById(nome);
+        if (dish != null && dish.isPresent()) {
+            dish.get().setName(nome);
+            dish.get().setCategory(categoria);
+            dish.get().setPrice(prezzo);
+            dish.get().setOrdinabile(ordinabile);
+            dish.get().setAllergy(allergie);
+            dish.get().setDescription(descrizione);
+            i_dish_service.save(dish.get());
+        }
+    }
+
 
 }

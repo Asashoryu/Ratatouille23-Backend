@@ -43,6 +43,11 @@ public class Impl_Dish_Service implements I_Dish_Service {
     }
 
     @Override
+    public void save(Dish dish) {
+        dish_repository.save(dish);
+    }
+
+    @Override
     public void insert(String nome, String descrizione, String categoria, float prezzo, boolean ordinabile, String allergie) {
         Dish dish = new Dish();
         dish.setName(nome);

@@ -18,6 +18,8 @@ public interface I_Dish_Service {
 
     void insert(Dish dish);
 
+    void save(Dish dish);
+
     void insert(String nome, String descrizione, String categoria, float prezzo, boolean ordinabile, String allergie);
 }
 
