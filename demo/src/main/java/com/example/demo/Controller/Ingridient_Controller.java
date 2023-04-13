@@ -56,7 +56,7 @@ public class Ingridient_Controller {
     @GetMapping("/get_all_ingridients")
     public List<Ingridient_DTO> get_all(){
         Optional<List<Ingridient>> ingridients= i_ingridient_service.get_all_ingridients();
-        if(ingridients.isPresent()){
+        if (ingridients.isPresent()) {
             List<Ingridient_DTO> ingridient_dtos= new ArrayList<>();
             for(Ingridient ingridient:ingridients.get()) ingridient_dtos.add(convertDto(ingridient));
             return ingridient_dtos;
@@ -65,36 +65,56 @@ public class Ingridient_Controller {
     }
 
     @PostMapping("/save_ingridient/{name}/{price}/{quantity}/{misura}/{soglia}/{tolleranza}/{description}")
-    public void save_ingridient(@PathVariable String name,
+    public ResponseEntity<String> save_ingridient(@PathVariable String name,
                                 @PathVariable float price,
                                 @PathVariable float quantity,
                                 @PathVariable String misura,
                                 @PathVariable float soglia,
                                 @PathVariable float tolleranza,
                                 @PathVariable String description){
+
+        if (description == null | description.equals("-")) {
+            description = "";
+        }
+
         Ingridient ingridient = new Ingridient(name, price, quantity, misura, soglia, tolleranza, description);
-        i_ingridient_service.save(ingridient);
+        boolean success = i_ingridient_service.save(ingridient);
+        if (success) {
+            return ResponseEntity.ok("Ingrediente salvato con successo");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore nel salvataggio dell'ingrediente");
+        }
     }
 
     @PutMapping("/update_ingredient/{name}/{price}/{quantity}/{misura}/{soglia}/{tolleranza}/{description}")
-    public void updateIngredient(@PathVariable String name,
+    public ResponseEntity<String> updateIngredient(@PathVariable String name,
                                  @PathVariable float price,
                                  @PathVariable float quantity,
                                  @PathVariable String misura,
                                  @PathVariable float soglia,
                                  @PathVariable float tolleranza,
                                  @PathVariable String description) {
+
+        if (description == null | description.equals("-")) {
+            description = "";
+        }
+
         Optional<Ingridient> ingredient = i_ingridient_service.findById(name);
-        if (ingredient != null) {
+        if (ingredient.isPresent()) {
             ingredient.get().setPrice(price);
             ingredient.get().setQuantity(quantity);
             ingredient.get().setMisura(misura);
             ingredient.get().setSoglia(soglia);
             ingredient.get().setTolleranza(tolleranza);
             ingredient.get().setDescription(description);
-            i_ingridient_service.save(ingredient.get());
+            boolean success = i_ingridient_service.save(ingredient.get());
+            if (success) {
+                return ResponseEntity.ok("Ingrediente salvato con successo");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore nel salvataggio dell'ingrediente");
+            }
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient non trovato");
         }
     }
 

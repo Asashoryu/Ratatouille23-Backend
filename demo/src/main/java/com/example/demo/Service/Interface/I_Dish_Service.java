@@ -16,9 +16,7 @@ public interface I_Dish_Service {
 
     Optional<List<Dish>> getAvailableDishes();
 
-    void insert(Dish dish);
-
-    void save(Dish dish);
+    boolean save(Dish dish);
 
     void insert(String nome, String descrizione, String categoria, float prezzo, boolean ordinabile, String allergie);
 }

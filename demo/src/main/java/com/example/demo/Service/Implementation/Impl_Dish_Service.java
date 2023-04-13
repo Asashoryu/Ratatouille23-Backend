@@ -37,14 +37,16 @@ public class Impl_Dish_Service implements I_Dish_Service {
         return dish_repository.getAvailableDishes();
     }
 
-    @Override
-    public void insert(Dish dish) {
-        dish_repository.save(dish);
-    }
 
     @Override
-    public void save(Dish dish) {
-        dish_repository.save(dish);
+    public boolean save(Dish dish) {
+        try {
+            dish_repository.save(dish);
+            return true; // save operation successful
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // save operation failed
+        }
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -64,23 +65,44 @@ public class Dish_Controller {
     }
 
     @PostMapping("/insert_piatto/{nome}/{categoria}/{prezzo}/{ordinabile}/{allergie}/{descrizione}")
-    public void insert_piatto(@PathVariable String nome,
-                              @PathVariable String categoria,
-                              @PathVariable float prezzo,
-                              @PathVariable Boolean ordinabile,
-                              @PathVariable String allergie,
-                              @PathVariable String descrizione) {
+    public ResponseEntity<String> insert_piatto(@PathVariable String nome,
+                                                @PathVariable String categoria,
+                                                @PathVariable float prezzo,
+                                                @PathVariable Boolean ordinabile,
+                                                @PathVariable(required = false) String allergie,
+                                                @PathVariable(required = false) String descrizione) {
+        if (allergie == null | allergie.equals("-")) {
+            allergie = "";
+        }
+        if (descrizione == null | descrizione.equals("-")) {
+            descrizione = "";
+        }
+
         Dish dish = new Dish(nome, prezzo, categoria, allergie, ordinabile, descrizione);
-        i_dish_service.insert(dish);
+        boolean success = i_dish_service.save(dish);
+        if (success) {
+            return ResponseEntity.ok("Piatto inserito con successo");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore nell'inserimento del piatto");
+        }
     }
 
+
     @PutMapping("/update_piatto/{nome}/{categoria}/{prezzo}/{ordinabile}/{allergie}/{descrizione}")
-    public void update_piatto(@PathVariable String nome,
+    public ResponseEntity<String> update_piatto(@PathVariable String nome,
                               @PathVariable String categoria,
                               @PathVariable float prezzo,
                               @PathVariable Boolean ordinabile,
                               @PathVariable String allergie,
                               @PathVariable String descrizione){
+
+        if (allergie == null | allergie.equals("-")) {
+            allergie = "";
+        }
+        if (descrizione == null | descrizione.equals("-")) {
+            descrizione = "";
+        }
+
         Optional<Dish> dish = i_dish_service.findById(nome);
         if (dish != null && dish.isPresent()) {
             dish.get().setName(nome);
@@ -89,8 +111,14 @@ public class Dish_Controller {
             dish.get().setOrdinabile(ordinabile);
             dish.get().setAllergy(allergie);
             dish.get().setDescription(descrizione);
-            i_dish_service.save(dish.get());
+            boolean success = i_dish_service.save(dish.get());
+            if (success) {
+                return ResponseEntity.ok("Piatto modificato con successo");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore nella modifica del piatto");
+            }
         }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Piatto non trovato");
     }
 
 

@@ -30,8 +30,14 @@ public class Impl_Ingridient_Service implements I_Ingridient_Service {
     }
 
     @Override
-    public Optional<Ingridient> save(Ingridient ingridient) {
-        return Optional.of(ingridient_repository.save(ingridient));
+    public boolean save(Ingridient ingridient) {
+        try {
+            ingridient_repository.save(ingridient);
+            return true; // save operation successful
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // save operation failed
+        }
     }
 
 }
