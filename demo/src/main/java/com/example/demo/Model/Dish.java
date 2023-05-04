@@ -100,7 +100,7 @@ public class Dish {
         this.made_dishes = made_dishes;
     }
 
-    public String setDescription() {
+    public String getDescription() {
         return description;
     }
 

@@ -47,7 +47,10 @@ public class Dish_Controller {
         Optional<List<Dish>> dishes = i_dish_service.getAllDishes();
         if(dishes.isPresent()){
             List<Dish_DTO> dish_dtos = new ArrayList<>();
-            for (Dish dish:dishes.get()) dish_dtos.add(convertDto(dish));
+            for (Dish dish:dishes.get()) {
+                Dish_DTO dishTemp = convertDto(dish);
+                dish_dtos.add(dishTemp);
+            }
             return dish_dtos;
         }
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Piatti non presenti");
