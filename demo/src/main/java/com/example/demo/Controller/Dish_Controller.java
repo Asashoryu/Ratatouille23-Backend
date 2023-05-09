@@ -124,5 +124,17 @@ public class Dish_Controller {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Piatto non trovato");
     }
 
+    @DeleteMapping("/delete_piatto/{nome}")
+    public ResponseEntity<String> delete_piatto(@PathVariable String nome) {
+
+        Optional<Dish> dish = i_dish_service.findById(nome);
+        if (dish != null && dish.isPresent()) {
+            i_dish_service.delete(dish.get());
+            return ResponseEntity.ok("Piatto eliminato con successo");
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Piatto non trovato");
+    }
+
+
 
 }

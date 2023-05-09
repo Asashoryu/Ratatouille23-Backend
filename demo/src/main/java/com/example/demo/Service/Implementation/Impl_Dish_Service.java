@@ -61,4 +61,15 @@ public class Impl_Dish_Service implements I_Dish_Service {
 
         dish_repository.save(dish);
     }
+
+    @Override
+    public boolean delete(Dish dish) {
+        try {
+            dish_repository.delete(dish);
+            return true;
+        } catch (Exception e) {
+            System.err.println("Non è stato possibile eliminare questo piatto");
+            return false;
+        }
+    }
 }

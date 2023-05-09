@@ -19,6 +19,9 @@ public interface I_Dish_Service {
     boolean save(Dish dish);
 
     void insert(String nome, String descrizione, String categoria, float prezzo, boolean ordinabile, String allergie);
+
+    public boolean delete(Dish dish);
+
 }
 
 
