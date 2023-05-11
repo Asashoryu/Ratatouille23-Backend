@@ -15,5 +15,7 @@ public interface I_Ingridient_Service {
 
     Optional<Ingridient> findById(String id);
 
+    boolean insert(Ingridient ingridient);
+
     boolean save(Ingridient ingridient);
 }

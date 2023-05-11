@@ -64,8 +64,8 @@ public class Ingridient_Controller {
         else throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Errore: Ingredienti non presenti");
     }
 
-    @PostMapping("/save_ingridient/{name}/{price}/{quantity}/{misura}/{soglia}/{tolleranza}/{description}")
-    public ResponseEntity<String> save_ingridient(@PathVariable String name,
+    @PostMapping("/insert_ingridient/{name}/{price}/{quantity}/{misura}/{soglia}/{tolleranza}/{description}")
+    public ResponseEntity<String> insert_ingridient(@PathVariable String name,
                                 @PathVariable float price,
                                 @PathVariable float quantity,
                                 @PathVariable String misura,
@@ -78,7 +78,7 @@ public class Ingridient_Controller {
         }
 
         Ingridient ingridient = new Ingridient(name, price, quantity, misura, soglia, tolleranza, description);
-        boolean success = i_ingridient_service.save(ingridient);
+        boolean success = i_ingridient_service.insert(ingridient);
         if (success) {
             return ResponseEntity.ok("Ingrediente salvato con successo");
         } else {
@@ -126,7 +126,7 @@ public class Ingridient_Controller {
         if (optionalIngredient.isPresent()) {
             Ingridient ingredient = optionalIngredient.get();
             ingredient.setQuantity(quantity);
-            i_ingridient_service.save(ingredient);
+            i_ingridient_service.insert(ingredient);
 
             // Check if the updated quantity is below the soglia value
             if (ingredient.getQuantity() < ingredient.getSoglia()) {

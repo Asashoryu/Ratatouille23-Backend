@@ -30,6 +30,17 @@ public class Impl_Ingridient_Service implements I_Ingridient_Service {
     }
 
     @Override
+    public boolean insert(Ingridient ingridient) {
+        try {
+            ingridient_repository.insertIngrediente(ingridient.getName(), ingridient.getDescription(), ingridient.getMisura(), ingridient.getPrice(), ingridient.getQuantity(), ingridient.getSoglia(), ingridient.getTolleranza());
+            return true; // insert operation successful
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // insert operation failed
+        }
+    }
+
+    @Override
     public boolean save(Ingridient ingridient) {
         try {
             ingridient_repository.save(ingridient);

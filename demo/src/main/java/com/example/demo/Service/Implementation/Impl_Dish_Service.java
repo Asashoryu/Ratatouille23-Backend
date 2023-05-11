@@ -50,16 +50,15 @@ public class Impl_Dish_Service implements I_Dish_Service {
     }
 
     @Override
-    public void insert(String nome, String descrizione, String categoria, float prezzo, boolean ordinabile, String allergie) {
-        Dish dish = new Dish();
-        dish.setName(nome);
-        dish.setDescription(descrizione);
-        dish.setCategory(categoria);
-        dish.setPrice(prezzo);
-        dish.setAllergy(allergie);
-        dish.setOrdinabile(ordinabile);
+    public boolean insert(Dish dish) {
+        try {
+            dish_repository.insertDish(dish.getName(), dish.getPrice(), dish.getCategory(), dish.getAllergy(), dish.isOrdinabile(), dish.getDescription());
+            return true; // insert operation successful
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // insert operation failed
+        }
 
-        dish_repository.save(dish);
     }
 
     @Override

@@ -82,7 +82,7 @@ public class Dish_Controller {
         }
 
         Dish dish = new Dish(nome, prezzo, categoria, allergie, ordinabile, descrizione);
-        boolean success = i_dish_service.save(dish);
+        boolean success = i_dish_service.insert(dish);
         if (success) {
             return ResponseEntity.ok("Piatto inserito con successo");
         } else {
@@ -134,7 +134,5 @@ public class Dish_Controller {
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Piatto non trovato");
     }
-
-
 
 }
