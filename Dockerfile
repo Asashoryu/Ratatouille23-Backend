@@ -1,11 +1,11 @@
-# Use a base image with Java and Docker installed
+# Utilizza un'immagine di base con Java e Docker installati
 FROM openjdk:19
 
-# Copy the application JAR file to the container
+# Copia il file JAR dell'applicazione nel contenitore
 COPY demo/target/Rat23.jar Rat23.jar
 
-# Copy the Firebase service account JSON file to the container
+# Copia il file JSON dell'account di servizio Firebase nel contenitore
 COPY demo/ratatouille23-grp21-firebase-adminsdk-134t0-7755617655.json /demo/ratatouille23-grp21-firebase-adminsdk-134t0-7755617655.json
 
-# Define the command to run your Spring Boot application
+# Definisci il comando per eseguire l'applicazione Spring Boot
 ENTRYPOINT ["java", "-jar", "Rat23.jar"]
