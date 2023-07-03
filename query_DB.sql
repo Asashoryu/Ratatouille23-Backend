@@ -2,22 +2,31 @@ drop database rat;
 create database rat;
 use rat;
 
-INSERT INTO tavolo (id, taken) VALUES
-    (1, false),
-    (2, false),
-    (3, false),
-    (4, false),
-    (5, false),
-    (6, false),
-    (7, false),
-    (8, false),
-    (9, false),
-    (10, false),
-    (11, false),
-    (12, false),
-    (13, false),
-    (14, false),
-    (15, false);
+
+
+insert into utente values('as', 'as', true, 'as', 'as', 'ADDETTOSALA', null);
+insert into utente values('a', 'a', true, 'a', 'a', 'AMMINISTRATORE', null);
+insert into utente values('s', 's', true, 's', 's', 'SUPERVISORE', null);
+insert into utente values('ac', 'ac', true, 'ac', 'ac', 'ADDETTOCUCINA', null);
+
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Farina', 'Farina bianca', 'Kg', 1.50, 50.0, 10.0, 0.5);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Zucchero', 'Zucchero bianco', 'Kg', 2.00, 30.0, 5.0, 0.2);
+INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Latte', 'Latte fINSERT INTO tavolo (id, taken) VALUES
+                                                                                                                      (1, false),
+                                                                                                                      (2, false),
+                                                                                                                      (3, false),
+                                                                                                                      (4, false),
+                                                                                                                      (5, false),
+                                                                                                                      (6, false),
+                                                                                                                      (7, false),
+                                                                                                                      (8, false),
+                                                                                                                      (9, false),
+                                                                                                                      (10, false),
+                                                                                                                      (11, false),
+                                                                                                                      (12, false),
+                                                                                                                      (13, false),
+                                                                                                                      (14, false),
+                                                                                                                      (15, false);
 
 INSERT INTO piatto (nome, prezzo, categoria, allergie, ordinabile, description)
 VALUES ('Spaghetti alla Carbonara', 12.50, 'Primo piatto', 'Glutine, uova', true, 'Spaghetti conditi con uovo, guanciale e formaggio pecorino romano'),
@@ -38,14 +47,6 @@ INSERT INTO conto (id, time, total, is_chiuso, numero_tavolo) VALUES (1008, 1650
 INSERT INTO conto (id, time, total, is_chiuso, numero_tavolo) VALUES (1009, 1651287662, 29.5, true, 9);
 INSERT INTO conto (id, time, total, is_chiuso, numero_tavolo) VALUES (10011, 1652535585, 66, true, 10);
 
-insert into utente values('as', 'as', true, 'as', 'as', 'ADDETTOSALA', null);
-insert into utente values('a', 'a', true, 'a', 'a', 'AMMINISTRATORE', null);
-insert into utente values('s', 's', true, 's', 's', 'SUPERVISORE', null);
-insert into utente values('ac', 'ac', true, 'ac', 'ac', 'ADDETTOCUCINA', null);
-
-INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Farina', 'Farina bianca', 'Kg', 1.50, 50.0, 10.0, 0.5);
-INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Zucchero', 'Zucchero bianco', 'Kg', 2.00, 30.0, 5.0, 0.2);
-INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Latte', 'Latte fresco', 'Lt', 0.80, 100.0, 20.0, 1.0);
 INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Uova', 'Uova fresche', 'Nr', 0.15, 500.0, 50.0, 5.0);
 INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Burro', 'Burro fresco', 'Kg', 5.00, 10.0, 2.0, 0.1);
 INSERT INTO ingrediente (nome, description, misura, costo, quantita, soglia, tolleranza) VALUES ('Sale', 'Sale fine', 'Kg', 0.30, 20.0, 1.0, 0.05);

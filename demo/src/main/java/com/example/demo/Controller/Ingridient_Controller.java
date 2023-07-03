@@ -128,9 +128,9 @@ public class Ingridient_Controller {
             ingredient.setQuantity(quantity);
             i_ingridient_service.insert(ingredient);
 
-            // Check if the updated quantity is below the soglia value
+            // Verifica se la quantità aggiornata è inferiore al valore di soglia
             if (ingredient.getQuantity() < ingredient.getSoglia()) {
-                // Get the Firebase token of the user who created the ingredient
+                // Ottieni il token Firebase dell'utente che ha creato l'ingrediente
                 Optional<List<Utente>> utenti = i_utente_service.findAllAmministratoriESupervisori();
                 if (utenti.isPresent()) {
                     for (Utente utente : utenti.get()) {
@@ -166,11 +166,12 @@ public class Ingridient_Controller {
         }
     }
 
-    // Shutdown the executor when the application is shutting down
+    // Arresta l'executor quando l'applicazione viene chiusa
     @PreDestroy
     public void onDestroy() {
         executor.shutdown();
     }
+
 
 
 
